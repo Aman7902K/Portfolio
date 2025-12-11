@@ -5,6 +5,7 @@ import App from './App.jsx'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router'
 import AboutMe from './components/About/AboutMe.jsx'
 import Project from './components/Projects/Project.jsx'
+import Admin from './components/Admin/index.jsx'
 
 
 const Router = createBrowserRouter(
@@ -12,6 +13,7 @@ const Router = createBrowserRouter(
     <Route path='/' element={<App/>}>
       <Route path='' element={<AboutMe/>}/>
       <Route path='/projects' element={<Project/>}/>
+      <Route path='/admin/:pswd' element={<Admin/>} />
     </Route>
   )
 )

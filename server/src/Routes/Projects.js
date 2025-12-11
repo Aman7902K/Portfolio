@@ -77,10 +77,9 @@ router.post("/direct", async (req, res) => {
   }
 });
 
-// POST: Create a new project with image uploads
 router.post("/", upload.array("images", 10), async (req, res) => {
   try {
-    const { id, name, desc } = req.body;
+    const { id, name, desc, techStack } = req.body;
 
     // Validate required fields
     if (!id || !name || !desc) {
@@ -97,31 +96,23 @@ router.post("/", upload.array("images", 10), async (req, res) => {
       });
     }
 
-    // Validate images
-    if (!req.files || req.files.length === 0) {
-      return res.status(400).json({ 
-        error: "At least one image is required" 
-      });
-    }
-
-    // Upload all images to Cloudinary
-    console.log(`Uploading ${req.files.length} images to Cloudinary...`);
+    // Upload images to Cloudinary (if provided)
     const imageUrls = [];
     
-    for (const file of req.files) {
-      const result = await uploadOnCloudinary(file.path);
-      if (result && result.secure_url) {
-        imageUrls.push(respult.secure_url);
-        console.log(`✓ Uploaded: ${file.originalname}`);
-      } else {
-        console.log(`✗ Failed to upload: ${file.originalname}`);
+    if (req.files && req.files.length > 0) {
+      console.log(`Uploading ${req.files.length} images to Cloudinary...`);
+      
+      for (const file of req.files) {
+        const result = await uploadOnCloudinary(file.path);
+        if (result && result.secure_url) {
+          imageUrls.push(result.secure_url);
+          console.log(`✓ Uploaded: ${file.originalname}`);
+        } else {
+          console.log(`✗ Failed to upload: ${file.originalname}`);
+        }
       }
-    }
-
-    if (imageUrls.length === 0) {
-      return res.status(500).json({ 
-        error: "Failed to upload images to Cloudinary" 
-      });
+    } else {
+      console.log("No images provided, creating project without images");
     }
 
     // Create new project in database
@@ -129,6 +120,7 @@ router.post("/", upload.array("images", 10), async (req, res) => {
       id: parseInt(id),
       name,
       desc,
+      techStack: techStack ? techStack.split(',').map(tech => tech.trim()) : [],
       img: imageUrls,
     });
 

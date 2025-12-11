@@ -70,7 +70,7 @@ function PersonalDetails() {
 
       <div className="myImg">
         <img
-          src="public/Mine.jpeg"
+          src="https://res.cloudinary.com/dpkb89sww/image/upload/v1765393580/Mine_z2yjsu.jpg"
           alt="My Portrait"
           className="rounded-full object-cover shadow-lg h-64 w-64 md:h-72 md:w-72"
         />

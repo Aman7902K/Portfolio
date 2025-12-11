@@ -8,7 +8,8 @@ const projectSchema = new Schema(
         },
         img:{
             type: [String],
-            required: true
+            required: false,
+            default: []
         },
         name:{
             type: String,
@@ -17,6 +18,10 @@ const projectSchema = new Schema(
         desc:{
             type: String,
             required: true  
+        },
+        techStack:{
+            type: [String],
+            required: false
         }
 
     },
