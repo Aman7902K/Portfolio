@@ -33,7 +33,8 @@ function Project() {
           console.error("Failed to fetch projects:", err);
           setError(err);
         }
-      } finally {
+      }
+       finally {
         if (!cancelled) setLoading(false);
       }
     })();

@@ -10,8 +10,8 @@ const PORT =  8000;
 app.use(cors({ origin: [
     "http://localhost:5173",
     "https://localhost:5174",
-    "https://portfolio-1-backend-osnn.onrender.com"
-    
+    "https://portfolio-1-backend-osnn.onrender.com",
+    "https://portfolio-1-c3zh.onrender.com"  
 ] }));
 app.use(express.json());
 
