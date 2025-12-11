@@ -11,6 +11,7 @@ app.use(cors({ origin: [
     "http://localhost:5173",
     "https://localhost:5174",
     "https://portfolio-1-backend-osnn.onrender.com"
+    
 ] }));
 app.use(express.json());
 
