@@ -36,22 +36,32 @@ router.post('/', async(req, res) => {
             </div>
         `;
 
-        await sendEmail({
+        console.log('Attempting to send email from:', name, email);
+        
+        const result = await sendEmail({
             to: process.env.EMAIL_USER,
             subject: `Portfolio Contact - Message from ${name}`,
             html: emailHtml,
             replyTo: email
         });
 
+        console.log('Email sent successfully to:', process.env.EMAIL_USER);
+        
         return res.status(200).json({
             success: true,
             message: "Message sent successfully!"
         });
 
     } catch (error) {
-        console.error("Error sending email:", error);
+        console.error("Error sending email:", {
+            message: error.message,
+            stack: error.stack,
+            code: error.code
+        });
         return res.status(500).json({
-            error: "Failed to send message. Please try again later."
+            success: false,
+            error: "Failed to send message. Please try again later.",
+            details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 });
