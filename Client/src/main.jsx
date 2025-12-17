@@ -6,6 +6,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import AboutMe from './components/About/AboutMe.jsx'
 import Project from './components/Projects/Project.jsx'
 import Admin from './components/Admin/index.jsx'
+import ContactMe from './components/contactMe/ContactMe.jsx'
 
 
 const Router = createBrowserRouter(
@@ -14,6 +15,7 @@ const Router = createBrowserRouter(
       <Route path='' element={<AboutMe/>}/>
       <Route path='/projects' element={<Project/>}/>
       <Route path='/admin/:pswd' element={<Admin/>} />
+      <Route path='contactMe' element={<ContactMe/>}/>
     </Route>
   )
 )

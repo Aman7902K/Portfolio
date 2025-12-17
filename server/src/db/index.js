@@ -4,9 +4,9 @@ import { DB_NAME } from "../constants.js";
 const connectDB = async () => {
     try {
         // Remove trailing slash from MONGODB_URL if present
-        // const mongoUrl = process.env.MONGODB_URL.replace(/\/$/, '');
-        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URL}/${DB_NAME}`);
-        console.log(connectionInstance);
+        const mongoURL = process.env.MONGODB_URL.replace(/\/$/, '');
+        const connectionInstance = await mongoose.connect(`${mongoURL}/${DB_NAME}`);
+
         
 
         console.log("MongoDB Connected at host : ", connectionInstance.connection.host);
