@@ -66,6 +66,22 @@ function PersonalDetails() {
             Email Me
           </a>
         </p>
+
+        {/* Resume Section */}
+        <div className="resume-section mt-6 pt-6 border-t border-gray-600">
+          <h2 className="text-2xl font-semibold mb-4">📄 Resume</h2>
+          <p className="mb-4">
+            Want to know more about my experience and skills? Download my resume below:
+          </p>
+          <a
+            target="_blank"
+            href="https://drive.google.com/file/d/1THHBgx6TIhUrB0GOI1g3gtn1oxYiKeCx/view?usp=sharing"
+            download
+            className="inline-block px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg"
+          >
+            Download Resume
+          </a>
+        </div>
       </div>
 
       <div className="myImg">
