@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import router from "./src/Routes/Projects.js";
+import projectRouter from "./src/Routes/Projects.js";
 import contactRouter from "./src/Routes/ContactMe.js";
 import connectDB from "./src/db/index.js";
 
@@ -21,7 +21,7 @@ console.log(">>> Running THIS index.js <<<");
 
 app.get("/healthz", (req, res) => res.status(200).json({ status: "ok" }));
 app.get("/", (req, res) => res.status(200).send("API is running"));
-app.use("/api/projects", router);
+app.use("/api/projects", projectRouter);
 app.use("/api/contact", contactRouter);
 
 connectDB().then(() => {

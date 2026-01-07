@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-export const sendEmail = async ({to, subject, html, replyTo}) => {
+export const sendEmail = async ({ to, subject, html, replyTo }) => {
     try {
         // Validate environment variables
         if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
@@ -8,6 +8,8 @@ export const sendEmail = async ({to, subject, html, replyTo}) => {
         }
 
         const transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
             service: 'Gmail',
             auth: {
                 user: process.env.EMAIL_USER,
@@ -40,6 +42,6 @@ export const sendEmail = async ({to, subject, html, replyTo}) => {
             command: error.command,
             response: error.response
         });
-        throw error; 
+        throw error;
     }
 };
